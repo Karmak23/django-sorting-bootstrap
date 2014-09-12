@@ -51,7 +51,7 @@ def result_headers(context, cl):
 
 ### TODO: when start using action_checkbox use i instead of i + 1. This +1 is to correct enumerate index
         # builds url
-        url = "./?sort_by="
+        url = "?sort_by="
         if ascending is False:
             url += "-"
         url += str(i + 1)
@@ -124,7 +124,7 @@ def sort_link(context, text, sort_field, visible_name=None):
             request.session[visible_name] = sort_field
 
     # builds url
-    url = "./?sort_by="
+    url = "?sort_by="
     if visible_name is None:
         url += sort_field
     else:
