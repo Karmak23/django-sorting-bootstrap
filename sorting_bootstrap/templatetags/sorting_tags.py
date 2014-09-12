@@ -40,11 +40,11 @@ def result_headers(context, cl):
         ascending = None
         is_sorted = False
         # Is it currently being sorted on?
-        if context.get('current_sort_field') == str(i + 1):
+        if context.get('sort_by') == str(i + 1):
             is_sorted = True
             ascending = False
             th_classes.append('sorted descending')
-        elif context.get('current_sort_field') == '-'+str(i + 1):
+        elif context.get('sort_by') == '-'+str(i + 1):
             is_sorted = True
             ascending = True
             th_classes.append('sorted ascending')
@@ -106,13 +106,13 @@ def sort_link(context, text, sort_field, visible_name=None):
     ascending = None
     class_attrib = 'sortable'
     orig_sort_field = sort_field
-    if context.get('current_sort_field') == sort_field:
+    if context.get('sort_by') == sort_field:
         sort_field = '-%s' % sort_field
         visible_name = '-%s' % (visible_name or orig_sort_field)
         sorted_fields = True
         ascending = False
         class_attrib += ' sorted descending'
-    elif context.get('current_sort_field') == '-'+sort_field:
+    elif context.get('sort_by') == '-'+sort_field:
         visible_name = '%s' % (visible_name or orig_sort_field)
         sorted_fields = True
         ascending = True
