@@ -98,13 +98,17 @@ def sort_headers(context, cl):
             'sorted_fields': sorted_fields}
 
 
-def sort_link(context, text, sort_field, visible_name=None):
+def sort_link(context, text, sort_field, visible_name=None, th_classes=None):
     """Usage: {% sort_link "text" "field_name" %}
-    Usage: {% sort_link "text" "field_name" "Visible name" %}
+    Usage: {% sort_link "text" "field_name" "Visible name" "th_classes" %}
+    
+    Set visible_name to '' if you don't want to use it but still want th_classes
     """
     sorted_fields = False
     ascending = None
-    class_attrib = 'sortable'
+    if visible_name == '':
+        visible_name is None
+    class_attrib = 'sortable ' + ('' if th_classes is None else th_classes)
     orig_sort_field = sort_field
     if context.get('sort_by') == sort_field:
         sort_field = '-%s' % sort_field
